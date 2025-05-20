@@ -33,7 +33,7 @@ opts.jwtFromRequest = ExtractJwt.fromAuthHeaderAsBearerToken();
 opts.secretOrKey = process.env.JWT_PASSWORD;
 passport.use(
     new JwtStrategy(opts, function(jwt_payload, done) {
-    User.findOne({id: jwt_payload.sub}, function(err, user) {
+    user.findOne({id: jwt_payload.sub}, function(err, user) {
        // done (error,does user exits ? )
 
         if (err) {
@@ -54,7 +54,7 @@ app.get("/", (req, res) => {
     // res is used to send a response
     res.send("Hello Nb");
 });
-app.use("/auth", authRoutes )
+app.use("/auth", authRoutes ) 
 // Start the server on port 3080
 app.listen(port, () => {
     console.log(`Server is running at  `+ port);

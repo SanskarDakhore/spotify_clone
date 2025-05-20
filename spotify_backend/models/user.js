@@ -39,5 +39,5 @@ const mongoose = require ("mongoose");
     },
  })
 
- const userModel = mongoose.model("User",user);
+ const userModel = mongoose.model("user",user);
   module.exports = userModel ;
