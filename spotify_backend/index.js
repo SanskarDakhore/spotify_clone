@@ -5,11 +5,13 @@ const express = require("express");
 const app = express();
 require("dotenv").config();
 const port = 3080;
+const authRoutes = require("./routes/auth");
 const user = require ("./models/user");
 const passport=require("passport")
 const mongoose = require("mongoose");
 const JwtStrategy = require('passport-jwt').Strategy,
     ExtractJwt = require('passport-jwt').ExtractJwt;
+    app.use(express.json())
 // console.log ("proccess.env");
 
 // connect mongodb to node app
@@ -52,7 +54,7 @@ app.get("/", (req, res) => {
     // res is used to send a response
     res.send("Hello Nb");
 });
-
+app.use("/auth", authRoutes )
 // Start the server on port 3080
 app.listen(port, () => {
     console.log(`Server is running at  `+ port);
